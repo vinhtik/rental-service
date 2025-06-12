@@ -13,10 +13,10 @@ import { offersList } from "../../mocks/offers-list";
 type AppMainPageProps = {
     rentalOffersCount: number;
     offersList: OffersList[];
-    offers: FullOffer[];
+    fullOffers: FullOffer[];
 }
 
-function App({rentalOffersCount, offers}: AppMainPageProps): JSX.Element {
+function App({ rentalOffersCount, offersList, fullOffers}: AppMainPageProps): JSX.Element {
     return(
         <BrowserRouter>
             <Routes>
@@ -41,7 +41,7 @@ function App({rentalOffersCount, offers}: AppMainPageProps): JSX.Element {
 
                 <Route
                     path={ `${AppRoute.Offer}/:id` }
-                    element={<OfferPage offers={offers} />}
+                    element={<OfferPage offers={fullOffers} />}
                 />
                 <Route
                     path="*"

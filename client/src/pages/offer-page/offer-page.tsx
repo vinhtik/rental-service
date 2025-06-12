@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 import { Logo } from "../../components/logo/logo"
 import { NearPlacesCard, NearPlacesCardList } from "../../components/near-places-card-list/near-places-card-list"
-import { FullOffer } from "../../types/offer"
+import { FullOffer, OffersList } from "../../types/offer"
 import { EmptyPage } from "../empty-page/empty-page";
 import { STARS_COUNT } from "../../const";
 import { ReviewForm } from "../../components/review-form/review-form";
 import { Review } from "../../components/review/review";
 import { ReviewList } from "../../components/review-list/review-list";
-import { Map } from "../../components/map/map";
+import Map from "../../components/map/map";
 import { offersList } from "../../mocks/offers-list";
 
 type OfferProps = {
@@ -17,9 +17,14 @@ type OfferProps = {
 function OfferPage({offers} : OfferProps) {
     const params = useParams();
     const offer = offers.find((item) => item.id === params.id);
+    
     if (!offer){
         return <EmptyPage />
     }
+
+    const sameCityOffers = offers
+        .filter((item) => item.city.name === offer.city.name && item.id !== offer.id);
+    
     return(
     <div className="page">
         <header className="header">
@@ -79,7 +84,7 @@ function OfferPage({offers} : OfferProps) {
                 </div>
                 <div className="offer__rating rating">
                     <div className="offer__stars rating__stars">
-                    <span style={{width: `${Math.round(offer.rating*100/STARS_COUNT)}%`}}></span>
+                    <span style={{width: `${Math.round(offer.rating/STARS_COUNT) * 100}%`}}></span>
                     <span className="visually-hidden">Rating</span>
                     </div>
                     <span className="offer__rating-value rating__value">{offer.rating}</span>
@@ -131,17 +136,22 @@ function OfferPage({offers} : OfferProps) {
                 <section className="offer__reviews reviews">
                     <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
                     <ReviewList />
-                    <ReviewForm />
+                    <ReviewForm onSubmit={() => {}} />
                 </section>
                 </div>
             </div>
-            <Map />
+             <section className="offer__map map">
+            <Map 
+                city={offer.city}
+                offers={sameCityOffers}
+            />
+            </section>
             </section>
             <div className="container">
             <section className="near-places places">
                 <h2 className="near-places__title">Other places in the neighbourhood</h2>
                 <div className="near-places__list places__list">
-                <NearPlacesCardList offersList={ offersList } />
+                <NearPlacesCardList offersList={ offersList} />
                 </div>
             </section>
             </div>

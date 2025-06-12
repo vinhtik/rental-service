@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
     <App
       rentalOffersCount={ Setting.RentalOffersCount }
       offersList={ offersList }
-      offers = { offers }
+      fullOffers = { offers }
     />
   </StrictMode>,
 )

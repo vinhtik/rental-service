@@ -1,8 +1,9 @@
-import { JSX } from "react";
+import { JSX, useState } from "react";
 import { CitiesCard } from "../../components/cities-card/cities-card";
 import { Logo } from "../../components/logo/logo";
 import { CitiesCardList } from "../../components/cities-card-list/cities-card-list";
-import { OffersList } from "../../types/offer";
+import { CityOffer, OffersList } from "../../types/offer";
+import Map from "../../components/map/map";
 
 type MainPageProps = {
   rentalOffersCount: number;
@@ -10,6 +11,8 @@ type MainPageProps = {
 }
 
 function MainPage({rentalOffersCount, offersList} : MainPageProps) : JSX.Element {
+  const [selectedOffer, setSelectedOffer] = useState<OffersList | undefined>(undefined);
+     const firstOffer = offersList[1];
     return(
         <div className="page page--gray page--main">
       <header className="header">
@@ -102,7 +105,14 @@ function MainPage({rentalOffersCount, offersList} : MainPageProps) : JSX.Element
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+               <Map
+                  city={{
+                  name: firstOffer.city.name,
+                  location: firstOffer.city.location
+                }}
+                offers={offersList}
+                selectedOffer={selectedOffer}
+              />
             </div>
           </div>
         </div>
