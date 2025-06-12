@@ -99,7 +99,6 @@ function MainPage({rentalOffersCount, offersList} : MainPageProps) : JSX.Element
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <CitiesCardList offersList={ offersList }/>
-                <CitiesCardList offersList={ offersList }/>
               </div>
             </section>
             <div className="cities__right-section">

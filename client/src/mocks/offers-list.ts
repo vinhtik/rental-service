@@ -24,4 +24,27 @@ export const offersList: OffersList[] = [
         'isFavorite': true,
         'rating': 4.9,
     },
+    {
+        'id': 'bap06a0e-3f92-436d-9a68-sdfg4b5d38e2b',
+        'title': 'White house',
+        'type': 'house',
+        'price': 670,
+        'previewImage':'apartment-02.jpg',
+        'city': {
+            'name': 'Amsterdam',
+            'location': {
+                'latitude': 52.3909553943508,
+                'longitude': 4.85309666406198,
+                'zoom': 13
+            }
+        },
+        'location': {
+                'latitude': 52.3909553943508,
+                'longitude': 4.929309666406198,
+                'zoom': 16
+        },
+        'isPremium': false,
+        'isFavorite': true,
+        'rating': 4.5,
+    },
 ]

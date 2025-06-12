@@ -1,10 +1,14 @@
 import { useParams } from "react-router-dom";
 import { Logo } from "../../components/logo/logo"
-import { NearPlacesCard } from "../../components/near-places-card/near-places-card"
+import { NearPlacesCard, NearPlacesCardList } from "../../components/near-places-card-list/near-places-card-list"
 import { FullOffer } from "../../types/offer"
 import { EmptyPage } from "../empty-page/empty-page";
 import { STARS_COUNT } from "../../const";
 import { ReviewForm } from "../../components/review-form/review-form";
+import { Review } from "../../components/review/review";
+import { ReviewList } from "../../components/review-list/review-list";
+import { Map } from "../../components/map/map";
+import { offersList } from "../../mocks/offers-list";
 
 type OfferProps = {
     offers: FullOffer[];
@@ -126,43 +130,18 @@ function OfferPage({offers} : OfferProps) {
                 </div>
                 <section className="offer__reviews reviews">
                     <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-                    <ul className="reviews__list">
-                    <li className="reviews__item">
-                        <div className="reviews__user user">
-                        <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                            <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
-                        </div>
-                        <span className="reviews__user-name">
-                            Max
-                        </span>
-                        </div>
-                        <div className="reviews__info">
-                        <div className="reviews__rating rating">
-                            <div className="reviews__stars rating__stars">
-                            <span style={{width: "80%"}}></span>
-                            <span className="visually-hidden">Rating</span>
-                            </div>
-                        </div>
-                        <p className="reviews__text">
-                            A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                        </p>
-                        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
-                        </div>
-                    </li>
-                    </ul>
+                    <ReviewList />
                     <ReviewForm />
                 </section>
                 </div>
             </div>
-            <section className="offer__map map"></section>
+            <Map />
             </section>
             <div className="container">
             <section className="near-places places">
                 <h2 className="near-places__title">Other places in the neighbourhood</h2>
                 <div className="near-places__list places__list">
-                <NearPlacesCard />
-                <NearPlacesCard />
-                <NearPlacesCard />
+                <NearPlacesCardList offersList={ offersList } />
                 </div>
             </section>
             </div>
