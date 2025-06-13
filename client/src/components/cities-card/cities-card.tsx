@@ -11,6 +11,7 @@ type CitiesCardProps = {
   previewImage: string;
   rating: number;
   cardType?: 'cities' | 'near-places';
+  onHover?: (id: string) => void;
 }
 
 function CitiesCard({ 
@@ -21,15 +22,15 @@ function CitiesCard({
   previewImage, 
   isPremium, 
   rating,
-  cardType = 'cities'
+  cardType = 'cities',
+  onHover
 }: CitiesCardProps) {
-  const [, setOfferId] = useState('');
   
   const cardClass = `place-card ${cardType === 'cities' ? 'cities__card' : 'near-places__card'}`;
   const imageWrapperClass = `place-card__image-wrapper ${cardType === 'cities' ? 'cities__image-wrapper' : 'near-places__image-wrapper'}`;
 
   return (
-    <article className={cardClass} onMouseOver={() => setOfferId(id)} onMouseOut={() => setOfferId('')}>
+    <article className={cardClass} onMouseOver={() => onHover?.(id)} onMouseOut={() => onHover?.('')}>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>

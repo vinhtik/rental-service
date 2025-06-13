@@ -76,3 +76,11 @@ export const CITIES_LOCATION : CityOffer[] = [
    }
  },
 ];
+
+export const BlockName = {
+  AllPages: 'cities',
+  AllPagesList: 'cities__places-list',
+  Offer: 'offer',
+  NearOfferList: 'near-places__list',
+  NearOffer: 'near-places'
+} as const;
